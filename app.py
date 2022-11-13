@@ -1,8 +1,12 @@
-from crypt import methods
-from flask import Flask,render_template, request, redirect, url_for, flash
+from flask import Flask, flash, redirect, render_template, request, url_for
 from flaskext.mysql import MySQL
-import datetime
 
+
+#Modelos
+from models.modelUser import ModelUser
+
+#entities
+from models.entities.User import User
 
 app = Flask(__name__)
 
@@ -22,6 +26,35 @@ app.secret_key = 'mysecretkey'
 @app.route('/')
 def index():
  return render_template('index.html')
+
+
+@app.route('/admin/login',methods=['GET','POST'])
+def login():
+    if request.method=='POST':
+        #print(request.form['usuario'])
+        #print(request.form['password'])
+        user=User(0,request.form['usuario'],
+            request.form['password'],0)
+        logged_user=ModelUser.login(mysql, user)
+        if logged_user!=None:
+            if logged_user.password:
+                return redirect(url_for('admin_home'))
+            else:
+                flash('Contraseña incorrecta...!')
+                return render_template('admin/login.html')
+        else:
+            flash('Usuario no encontrado...')
+            return redirect(url_for('admin_home'))
+    else:
+        return render_template("admin/login.html")
+
+@app.route('/admin/home')
+def admin_home():
+    return render_template("admin/home.html")
+
+@app.route('/admin/citas')
+def citas():
+    return render_template("admin/listarCitas.html")
 
 @app.route('/new_user',methods=['POST'])
 def new_user():
