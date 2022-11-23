@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="shortcut icon" href="{{ url_for('static',filename='images/logo_blanco.png') }}">
+
+    <!-- Estilos -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+    {% block customCSS %}{% endblock %}
+
+</head>
+<body>
+<h1>Reporte de Citas</h1>
+
+    <div class="table-responsive">
+        <table class="table table-striped table-sm">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Nombres y Apellidos</th>
+              <th scope="col">DNI</th>
+              <th scope="col">Telefono</th>
+              <th scope="col">Correo</th>
+              <th scope="col">Fecha Cita</th>
+              <th scope="col">Hora</th>
+              <th scope="col">Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for cita in citas %}
+      
+            <tr>
+              <td>{{ cita[0] }}</td>
+              <td>{{ cita[2] + ' ' + cita[1] }}</td>
+              <td>{{ cita[3] }}</td>
+              <td>{{ cita[4] }}</td>
+              <td>{{ cita[5] }}</td>
+              <td>{{ cita[6] }}</td>
+              <td>{{ cita[7] }}</td>
+              <td>
+                <!--UPDATE `reserva_cita` SET `estado_cita`='[value-4]' WHERE id_reserva=''-->
+                {% if cita[8] == 1 %}
+                <form action="/admin/estado-cita" method="post">
+                  <input type="hidden" value="{{ cita[0] }}" name="id_cita" id="id_cita">
+                  <button type="submit" class="btn btn-success" disabled>Atendido</button>
+                </form>
+                {% else %}
+                {% if cita[8] == 2 %}
+                <form action="/admin/estado-cita" method="post">
+                  <input type="hidden" value="{{ cita[0] }}" name="id_cita" id="id_cita">
+                  <button type="submit" class="btn btn-danger" disabled>Cancelado</button>
+                </form>
+                {% else %}
+                <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                  <form action="/admin/estado-cita" method="post">
+                    <input type="hidden" value="{{ cita[0] }}" name="id_cita" id="id_cita">
+                    <button type="submit" class="btn btn-success">Pendiente</button>
+                  </form>
+                </div>
+                {% endif%}
+                {% endif%}
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+</body>

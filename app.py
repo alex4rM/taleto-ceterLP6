@@ -1,6 +1,6 @@
-from flask import Flask, flash, redirect, render_template, request, url_for
+from flask import Flask, flash, redirect, render_template, request, url_for, make_response
 from flaskext.mysql import MySQL
-
+from flask_weasyprint import HTML, render_pdf
 
 #Modelos
 from models.modelUser import ModelUser
@@ -26,7 +26,6 @@ app.secret_key = 'mysecretkey'
 @app.route('/')
 def index():
  return render_template('index.html')
-
 
 @app.route('/admin/login',methods=['GET','POST'])
 def login():
@@ -54,7 +53,31 @@ def admin_home():
 
 @app.route('/admin/citas')
 def citas():
-    return render_template("admin/listarCitas.html")
+    cur = mysql.get_db().cursor()
+    cur.execute("SELECT usuario.id_user,usuario.nombre,usuario.apellidos,usuario.dni,usuario.telefono,usuario.correo,reserva_cita.fecha,reserva_cita.hora,reserva_cita.estado_cita FROM reserva_cita,usuario WHERE reserva_cita.id_user=usuario.id_user")
+    citas=cur.fetchall()
+    mysql.get_db().commit()
+    return render_template("admin/listarCitas.html", citas=citas)
+
+@app.route('/admin/estado-cita',methods=['post'])
+def admin_estadocita():
+    _id=request.form['id_cita']
+    #print(id)
+    cur = mysql.get_db().cursor()
+    cur.execute("UPDATE reserva_cita SET estado_cita='1' WHERE id_reserva=%s ",(_id))
+    citas=cur.fetchall()
+    mysql.get_db().commit()
+    return redirect("/admin/citas")
+
+@app.route('/admin/cancelar-cita',methods=['post'])
+def admin_cancelarcita():
+    _id=request.form['id_cita']
+    #print(id)
+    cur = mysql.get_db().cursor()
+    cur.execute("UPDATE reserva_cita SET estado_cita='2' WHERE id_reserva=%s ",(_id))
+    citas=cur.fetchall()
+    mysql.get_db().commit()
+    return redirect("/admin/citas")
 
 @app.route('/new_user',methods=['POST'])
 def new_user():
@@ -77,15 +100,23 @@ def new_user():
         for x in res:
             var = x
         mysql.get_db().commit()
-        
-        cur.execute("insert into reserva_cita(fecha, hora, id_user) VALUES(%s,%s, %s)",(fecha, hora, var))
+        estado_cita=0
+        cur.execute("insert into reserva_cita(fecha, hora, estado_cita, id_user) VALUES(%s,%s, %s,%s)",(fecha, hora, estado_cita,var))
         mysql.get_db().commit()
         cur.close()
         flash('Usuario agregado con exito')
     return redirect(url_for('index'))
 
-
-
+@app.route('/reporte')
+def reporte():
+    cur = mysql.get_db().cursor()
+    resultValue = cur.execute("SELECT usuario.id_user,usuario.nombre,usuario.apellidos,usuario.dni,usuario.telefono,usuario.correo,reserva_cita.fecha,reserva_cita.hora,reserva_cita.estado_cita FROM reserva_cita,usuario WHERE reserva_cita.id_user=usuario.id_user")
+    if resultValue > 0:
+        citas = cur.fetchall()
+    html = render_template('admin/pdf.html', citas=citas)
+    
+    return render_pdf(HTML(string=html))
+    
 
 if __name__=='__main__':
     app.run(
