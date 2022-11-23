@@ -104,7 +104,16 @@ def new_user():
         cur.execute("insert into reserva_cita(fecha, hora, estado_cita, id_user) VALUES(%s,%s, %s,%s)",(fecha, hora, estado_cita,var))
         mysql.get_db().commit()
         cur.close()
-        flash('Usuario agregado con exito')
+        cur = mysql.get_db().cursor()
+        resultValue = cur.execute("SELECT usuario.id_user,usuario.nombre,usuario.apellidos,usuario.dni,usuario.telefono,usuario.correo,reserva_cita.fecha,reserva_cita.hora,reserva_cita.estado_cita FROM reserva_cita,usuario WHERE usuario.dni="+dni+" and usuario.id_user=reserva_cita.id_user")
+        mysql.get_db().commit()
+        if resultValue > 0:
+            citas = cur.fetchall()
+        html = render_template('reservausuario.html', citas=citas)
+        
+    
+    return write_pdf(HTML(string=html))
+        #flash('Usuario agregado con exito')
     return redirect(url_for('index'))
 
 @app.route('/reporte')
