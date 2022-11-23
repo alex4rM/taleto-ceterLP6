@@ -1,0 +1,45 @@
+
+CREATE TABLE usuario (
+                id_user INT AUTO_INCREMENT NOT NULL,
+                nombre VARCHAR(50) NOT NULL,
+                apellidos VARCHAR(60) NOT NULL,
+                correo VARCHAR(80) NOT NULL,
+                telefono VARCHAR(10) NOT NULL,
+                dni VARCHAR(8) NOT NULL,
+                PRIMARY KEY (id_user)
+);
+
+
+CREATE TABLE usuarios (
+                id INT NOT NULL,
+                usuario VARCHAR(90) NOT NULL,
+                contra_user VARCHAR(120) NOT NULL,
+                rolle VARCHAR(30) NOT NULL,
+                id_user INT NOT NULL,
+                PRIMARY KEY (id)
+);
+
+
+CREATE TABLE reserva_cita (
+                id_reserva INT AUTO_INCREMENT NOT NULL,
+                fecha DATE NOT NULL,
+                hora TIME NOT NULL,
+                estado_cita INT DEFAULT 0 NOT NULL,
+                id_user INT NOT NULL,
+                PRIMARY KEY (id_reserva)
+);
+
+ALTER TABLE reserva_cita MODIFY COLUMN estado_cita INTEGER COMMENT 'Si es 0 es por q no fue atendida';
+
+
+ALTER TABLE reserva_cita ADD CONSTRAINT usuario_reserva_cita_fk
+FOREIGN KEY (id_user)
+REFERENCES usuario (id_user)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION;
+
+ALTER TABLE usuarios ADD CONSTRAINT usuario_usuarios_fk
+FOREIGN KEY (id_user)
+REFERENCES usuario (id_user)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION;
