@@ -112,9 +112,9 @@ def new_user():
         html = render_template('reservausuario.html', citas=citas)
         
     
-    return write_pdf(HTML(string=html))
+    return render_pdf(HTML(string=html))
         #flash('Usuario agregado con exito')
-    return redirect(url_for('index'))
+        #return redirect(url_for('index'))
 
 @app.route('/reporte')
 def reporte():
