@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<architect-project version="1.0" appversion="1.0.8">
+<architect-project version="1.0" appversion="1.0.9">
  <project-name>bd-TalentoCenter</project-name>
  <print-settings numCopies="1" zoom="1.0" pageNumbersPrinted="true" orientation="1" paperWidth="612.0" paperHeight="792.0" leftBorder="50.0" rightBorder="50.0" topBorder="50.0" bottomBorder="50.0" />
  <project-data-sources>
@@ -10,25 +10,25 @@
  <source-databases>
  </source-databases>
  <target-database id="ppdb" dbcs-ref="DS0">
-  <table id="TAB1" populated="true" UUID="1c1599b9-8178-498f-b192-7dc687aee40d" name="usuario" objectType="TABLE" physicalName="usuario" >
+  <table id="TAB1" populated="true" UUID="1c1599b9-8178-498f-b192-7dc687aee40d" name="persona" objectType="TABLE" physicalName="persona" >
    <remarks></remarks>
    <folder id="FOLTAB11" populated="true" name="Columns" physicalName="Columns" type="1">
     <column id="COL2" populated="true" UUID="060686a1-6c1e-4358-bd27-d534f2940abe" autoIncrement="true" autoIncrementSequenceName="usuario_id" defaultValue="" name="id_user" nullable="0" physicalName="id_user" precision="0" primaryKeySeq="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
      <remarks></remarks>
     </column>
-    <column id="COL3" populated="true" UUID="3cc3b460-73ac-43da-906c-a1586bd47516" autoIncrement="false" autoIncrementSequenceName="usuario_nombre_seq" defaultValue="" name="nombre" nullable="0" physicalName="nombre" precision="50" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+    <column id="COL3" populated="true" UUID="3cc3b460-73ac-43da-906c-a1586bd47516" autoIncrement="false" autoIncrementSequenceName="persona_nombre_seq" defaultValue="" name="nombre" nullable="0" physicalName="nombre" precision="50" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
      <remarks></remarks>
     </column>
-    <column id="COL4" populated="true" UUID="7690f079-f7a3-452d-bfef-ac01f836a2bd" autoIncrement="false" autoIncrementSequenceName="usuario_apellidos_seq" defaultValue="" name="apellidos" nullable="0" physicalName="apellidos" precision="60" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+    <column id="COL4" populated="true" UUID="7690f079-f7a3-452d-bfef-ac01f836a2bd" autoIncrement="false" autoIncrementSequenceName="persona_apellidos_seq" defaultValue="" name="apellidos" nullable="0" physicalName="apellidos" precision="60" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
      <remarks></remarks>
     </column>
-    <column id="COL5" populated="true" UUID="b06b89b4-0f74-464c-ac45-7bdc1d7091de" autoIncrement="false" autoIncrementSequenceName="usuario_correo_seq" defaultValue="" name="correo" nullable="0" physicalName="correo" precision="80" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+    <column id="COL5" populated="true" UUID="b06b89b4-0f74-464c-ac45-7bdc1d7091de" autoIncrement="false" autoIncrementSequenceName="persona_correo_seq" defaultValue="" name="correo" nullable="0" physicalName="correo" precision="80" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
      <remarks></remarks>
     </column>
-    <column id="COL6" populated="true" UUID="31c9a331-a048-41f4-a773-6a6c89956122" autoIncrement="false" autoIncrementSequenceName="usuario_telefono_seq" defaultValue="" name="telefono" nullable="0" physicalName="telefono" precision="10" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+    <column id="COL6" populated="true" UUID="31c9a331-a048-41f4-a773-6a6c89956122" autoIncrement="false" autoIncrementSequenceName="persona_telefono_seq" defaultValue="" name="telefono" nullable="0" physicalName="telefono" precision="10" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
      <remarks></remarks>
     </column>
-    <column id="COL7" populated="true" UUID="dd766590-f0f9-4db6-a4d7-b136074d2e4f" autoIncrement="false" autoIncrementSequenceName="usuario_dni_seq" defaultValue="" name="dni" nullable="0" physicalName="dni" precision="8" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+    <column id="COL7" populated="true" UUID="dd766590-f0f9-4db6-a4d7-b136074d2e4f" autoIncrement="false" autoIncrementSequenceName="persona_dni_seq" defaultValue="" name="dni" nullable="0" physicalName="dni" precision="8" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
      <remarks></remarks>
     </column>
     </folder>
@@ -71,22 +71,22 @@
     </index>
    </folder>
   </table>
-  <table id="TAB18" populated="true" UUID="3064e39f-9da0-4b1d-883b-6cc8a4e57328" name="usuarios" objectType="TABLE" physicalName="usuarios" >
+  <table id="TAB18" populated="true" UUID="3064e39f-9da0-4b1d-883b-6cc8a4e57328" name="usuario" objectType="TABLE" physicalName="usuario" >
    <remarks></remarks>
    <folder id="FOLTAB181" populated="true" name="Columns" physicalName="Columns" type="1">
-    <column id="COL19" populated="true" UUID="27498dea-3379-436e-8c93-c56675644d13" autoIncrement="false" autoIncrementSequenceName="usuarios_id_seq" defaultValue="" name="id" nullable="0" physicalName="id" precision="0" primaryKeySeq="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+    <column id="COL19" populated="true" UUID="27498dea-3379-436e-8c93-c56675644d13" autoIncrement="false" autoIncrementSequenceName="usuario_id_seq" defaultValue="" name="id" nullable="0" physicalName="id" precision="0" primaryKeySeq="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
      <remarks></remarks>
     </column>
-    <column id="COL20" populated="true" UUID="5f765369-35b3-47c7-87eb-56b8b6b7a947" autoIncrement="false" autoIncrementSequenceName="usuarios_usuario_seq" defaultValue="" name="usuario" nullable="0" physicalName="usuario" precision="90" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+    <column id="COL20" populated="true" UUID="5f765369-35b3-47c7-87eb-56b8b6b7a947" autoIncrement="false" autoIncrementSequenceName="usuario_usuario_seq" defaultValue="" name="usuario" nullable="0" physicalName="usuario" precision="90" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
      <remarks></remarks>
     </column>
-    <column id="COL21" populated="true" UUID="854992f5-c8f2-483a-a26b-284a3a57e31c" autoIncrement="false" autoIncrementSequenceName="usuarios_contra_user_seq" defaultValue="" name="contra_user" nullable="0" physicalName="contra_user" precision="120" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+    <column id="COL21" populated="true" UUID="854992f5-c8f2-483a-a26b-284a3a57e31c" autoIncrement="false" autoIncrementSequenceName="usuario_contra_user_seq" defaultValue="" name="contra_user" nullable="0" physicalName="contra_user" precision="120" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
      <remarks></remarks>
     </column>
-    <column id="COL22" populated="true" UUID="69417bdd-4c3c-4c80-8530-0eef97c1997f" autoIncrement="false" autoIncrementSequenceName="usuarios_rolle_seq" defaultValue="" name="rolle" nullable="0" physicalName="rolle" precision="30" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+    <column id="COL22" populated="true" UUID="39c8f1d9-2753-4846-b990-a7764c39f0b4" autoIncrement="false" autoIncrementSequenceName="usuario_nombre_seq" defaultValue="" name="nombre" nullable="0" physicalName="nombre" precision="40" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
      <remarks></remarks>
     </column>
-    <column id="COL23" populated="true" UUID="d76de73a-ab40-41b8-9578-dfc6304eaca0" autoIncrement="false" autoIncrementSequenceName="usuario_id_1" defaultValue="" name="id_user" nullable="0" physicalName="id_user" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+    <column id="COL23" populated="true" UUID="69417bdd-4c3c-4c80-8530-0eef97c1997f" autoIncrement="false" autoIncrementSequenceName="usuario_rolle_seq" defaultValue="" name="rolle" nullable="0" physicalName="rolle" precision="30" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
      <remarks></remarks>
     </column>
     </folder>
@@ -104,20 +104,16 @@
    <relationship id="REL26" populated="true" UUID="e5d0da53-3a2e-444e-bd4b-314787c52a6e" deferrability="7" deleteRule="3" fk-table-ref="TAB10" fkCardinality="7" identifying="false" name="usuario_reserva_cita_fk" physicalName="usuario_reserva_cita_fk" pk-table-ref="TAB1" pkCardinality="2" updateRule="3" >
     <column-mapping id="CMP27" populated="true" UUID="b69ecbb5-1e07-4872-8e83-eb97d1319b3d" fk-column-ref="COL15" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL2" />
    </relationship>
-   <relationship id="REL28" populated="true" UUID="e06b30f9-a629-4683-bbc3-3950103d8493" deferrability="7" deleteRule="3" fk-table-ref="TAB18" fkCardinality="7" identifying="false" name="usuario_usuarios_fk" physicalName="usuario_usuarios_fk" pk-table-ref="TAB1" pkCardinality="2" updateRule="3" >
-    <column-mapping id="CMP29" populated="true" UUID="8828e130-74dc-4426-8d75-336111d39f90" fk-column-ref="COL23" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL2" />
-   </relationship>
   </relationships>
  </target-database>
- <ddl-generator type="ca.sqlpower.architect.ddl.MySqlDDLGenerator" allow-connection="false" target-catalog="talento-center"> </ddl-generator>
+ <ddl-generator type="ca.sqlpower.architect.ddl.MySqlDDLGenerator" allow-connection="true" target-catalog="talento-center"> </ddl-generator>
  <liquibase-settings useSeparateChangeSets="false" generateId="false" idStart="1"/>
  <create-kettle-job-settings filePath="" jobName="" schemaName="" kettleJoinType="0" savingToFile="true" />
  <play-pen zoom="1.0" viewportX="0" viewportY="0" relationship-style="rectilinear" names-displayLogicalNames="true" showPrimaryTag="true" showForeignTag="true" showAlternateTag="true" columnVisibility="ALL" relationshipLabelVisibility="true">
-  <table-pane table-ref="TAB1" x="177" y="37" bgColor="0xeeeeee" fgColor="0x000000" rounded="false" dashed="false"/>
-  <table-pane table-ref="TAB10" x="166" y="228" bgColor="0xeeeeee" fgColor="0x000000" rounded="false" dashed="false"/>
-  <table-pane table-ref="TAB18" x="505" y="36" bgColor="0xeeeeee" fgColor="0x000000" rounded="false" dashed="false"/>
-  <table-link relationship-ref="REL26" pkConnection="0.5952380952380952" fkConnection="0.19196428571428573" rLineColor="0x333333" pkLabelText="" fkLabelText="" orientation="132"/>
-  <table-link relationship-ref="REL28" pkConnection="0.4083333333333333" fkConnection="0.5222222222222223" rLineColor="0x333333" pkLabelText="" fkLabelText="" orientation="33"/>
+  <table-pane table-ref="TAB1" x="527" y="245" bgColor="0xeeeeee" fgColor="0x000000" rounded="false" dashed="false"/>
+  <table-pane table-ref="TAB10" x="123" y="262" bgColor="0xeeeeee" fgColor="0x000000" rounded="false" dashed="false"/>
+  <table-pane table-ref="TAB18" x="139" y="61" bgColor="0xeeeeee" fgColor="0x000000" rounded="false" dashed="false"/>
+  <table-link relationship-ref="REL26" pkConnection="0.6548672566371682" fkConnection="0.5757575757575758" rLineColor="0x333333" pkLabelText="" fkLabelText="" orientation="18"/>
  </play-pen>
  <critic-manager>
   <critic-grouping platformType="Generic" enabled="true">

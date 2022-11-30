@@ -11,7 +11,19 @@
     <form action="/admin/login" method="post">
       <img class="mb-4" src="{{ url_for('static',filename='images/logo_talento.png') }}" alt="" width="150" >
       <h1 class="text-center h3 mb-3 fw-normal">Inicio de Sesion</h1>
-  
+      <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+      {% with messages = get_flashed_messages() %}
+      {% if messages %}
+      <br>
+      {% for message in messages %}
+        <div class="alert alert-primary alert-dismissible" role="alert">
+          <strong>{{ message }}</strong>
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+      {% endfor %}
+      {% endif %}
+
+      {% endwith %}
       <div class="form-floating">
         <input type="text" class="form-control" id="floatingInput" name="usuario" placeholder="name@example.com">
         <label for="floatingInput">

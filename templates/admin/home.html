@@ -72,7 +72,7 @@
     <input class="form-control form-control-dark w-100 rounded-0 border-0" type="text" placeholder="Buscar" aria-label="Search">
     <div class="navbar-nav">
       <div class="nav-item text-nowrap ">
-        <a class="nav-link px-3" href="#">Cerrar Sesion</a>
+        <a class="nav-link px-3" href="{{ url_for('logout') }}">Cerrar Sesion</a>
       </div>
     </div>
   </header>
@@ -157,7 +157,8 @@
   
       <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-          <h1 class="h2">{% block homeTitle %}Bienvenido{% endblock %}</h1>
+          <h1 class="h2">{% block homeTitle %}Bienvenido, {{ current_user.nombre }}{% endblock %}</h1>
+          
           
         </div>
 
