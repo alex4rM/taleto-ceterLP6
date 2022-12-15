@@ -16,10 +16,10 @@ csrf=CSRFProtect()
 
 #MYSQL conection
 mysql = MySQL()
-app.config['MYSQL_HOST']='localhost'
-app.config['MYSQL_DATABASE_USER']='root'
-app.config['MYSQL_DATABASE_PASSWORD']=''
-app.config['MYSQL_DATABASE_DB']='talento-center'
+app.config['MYSQL_HOST']='4lex22.mysql.pythonanywhere-services.com'
+app.config['MYSQL_DATABASE_USER']='4lex22'
+app.config['MYSQL_DATABASE_PASSWORD']='123Oswaldo'
+app.config['MYSQL_DATABASE_DB']='4lex22$talento-center'
 
 mysql.init_app(app)
 mysql.connect()
