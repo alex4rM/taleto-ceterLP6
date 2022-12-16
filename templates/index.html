@@ -337,6 +337,7 @@
 							{% endif %}
 							{% endwith %}
 							<form action="/new_user" method="POST">
+								<input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
 								<div class="row row-space">
 									<div class="col-2">
 										<div class="input-group">

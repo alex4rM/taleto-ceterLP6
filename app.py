@@ -1,5 +1,6 @@
+import pymysql
 from flask import Flask, flash, redirect, render_template, request, url_for, make_response, flash
-from flaskext.mysql import MySQL
+#from flaskext.mysql import MySQL
 from flask_weasyprint import HTML, render_pdf
 from flask_login import LoginManager, login_user, logout_user,login_required
 from flask_wtf.csrf import CSRFProtect
@@ -14,21 +15,22 @@ app = Flask(__name__)
 
 csrf=CSRFProtect()
 
-#MYSQL conection
-mysql = MySQL()
-app.config['MYSQL_HOST']='4lex22.mysql.pythonanywhere-services.com'
-app.config['MYSQL_DATABASE_USER']='4lex22'
-app.config['MYSQL_DATABASE_PASSWORD']='123Oswaldo'
-app.config['MYSQL_DATABASE_DB']='4lex22$talento-center'
-
-mysql.init_app(app)
-mysql.connect()
+#Coneccion a base de datos
+def connection():
+    s = 'localhost' #Your server(host) name 
+    d = 'talento-center' 
+    u = 'root' #Your login user
+    p = '' #Your login password
+    conn = pymysql.connect(host=s, user=u, password=p, database=d)
+    return conn
 
 login_manager_app = LoginManager(app)
 
+conn=connection()
+
 @login_manager_app.user_loader
 def load_user(id):
-    return ModelUser.get_by_id(mysql,id)
+    return ModelUser.get_by_id(conn,id)
 
 
 #settings
@@ -45,7 +47,7 @@ def login():
         #print(request.form['password'])
         user=User(0,request.form['usuario'],
             request.form['password'],0,0)
-        logged_user=ModelUser.login(mysql, user)
+        logged_user=ModelUser.login(conn, user)
         if logged_user!=None:
             if logged_user.contra_user:
                 login_user(logged_user)
@@ -67,10 +69,10 @@ def admin_home():
 @app.route('/admin/citas')
 @login_required
 def citas():
-    cur = mysql.get_db().cursor()
+    cur = conn.cursor()
     cur.execute("SELECT persona.id_user,persona.nombre,persona.apellidos,persona.dni,persona.telefono,persona.correo,reserva_cita.fecha,reserva_cita.hora,reserva_cita.estado_cita FROM reserva_cita,persona WHERE reserva_cita.id_user=persona.id_user")
     citas=cur.fetchall()
-    mysql.get_db().commit()
+    conn.commit()
     return render_template("admin/listarCitas.html", citas=citas)
 
 @app.route('/admin/estado-cita',methods=['post'])
@@ -78,10 +80,10 @@ def citas():
 def admin_estadocita():
     _id=request.form['id_cita']
     #print(id)
-    cur = mysql.get_db().cursor()
+    cur = conn.cursor()
     cur.execute("UPDATE reserva_cita SET estado_cita='1' WHERE id_reserva=%s ",(_id))
     citas=cur.fetchall()
-    mysql.get_db().commit()
+    conn.commit()
     return redirect("/admin/citas")
 
 @app.route('/admin/cancelar-cita',methods=['post'])
@@ -89,10 +91,10 @@ def admin_estadocita():
 def admin_cancelarcita():
     _id=request.form['id_cita']
     #print(id)
-    cur = mysql.get_db().cursor()
+    cur = conn.cursor()
     cur.execute("UPDATE reserva_cita SET estado_cita='2' WHERE id_reserva=%s ",(_id))
     citas=cur.fetchall()
-    mysql.get_db().commit()
+    conn.commit()
     return redirect("/admin/citas")
 
 @app.route('/new_user',methods=['POST'])
@@ -105,24 +107,23 @@ def new_user():
         telefono = request.form['telefono']
         
         hora = request.form['hora']
-        
         fecha = request.form['fecha']
 
-        cur = mysql.get_db().cursor()
+        cur = conn.cursor()
         cur.execute("insert into persona (nombre, apellidos, correo, telefono, dni) VALUES(%s, %s, %s, %s, %s)",
         (nombre, apellidos, correo, telefono, dni))
         cur.execute("select id_user from persona where dni ="+dni)
         res = cur.fetchall()
         for x in res:
             var = x
-        mysql.get_db().commit()
+        conn.commit()
         estado_cita=0
         cur.execute("insert into reserva_cita(fecha, hora, estado_cita, id_user) VALUES(%s,%s, %s,%s)",(fecha, hora, estado_cita,var))
-        mysql.get_db().commit()
+        conn.commit()
         cur.close()
-        cur = mysql.get_db().cursor()
+        cur = conn.cursor()
         resultValue = cur.execute("SELECT persona.id_user,persona.nombre,persona.apellidos,persona.dni,persona.telefono,persona.correo,reserva_cita.fecha,reserva_cita.hora,reserva_cita.estado_cita FROM reserva_cita,persona WHERE persona.dni="+dni+" and persona.id_user=reserva_cita.id_user")
-        mysql.get_db().commit()
+        conn.commit()
         if resultValue > 0:
             citas = cur.fetchall()
         html = render_template('reservausuario.html', citas=citas)
@@ -135,7 +136,7 @@ def new_user():
 @app.route('/reporte')
 @login_required
 def reporte():
-    cur = mysql.get_db().cursor()
+    cur = conn.cursor()
     resultValue = cur.execute("SELECT persona.id_user,persona.nombre,persona.apellidos,persona.dni,persona.telefono,persona.correo,reserva_cita.fecha,reserva_cita.hora,reserva_cita.estado_cita FROM reserva_cita,persona WHERE reserva_cita.id_user=persona.id_user")
     if resultValue > 0:
         citas = cur.fetchall()

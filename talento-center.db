@@ -37,3 +37,6 @@ FOREIGN KEY (id_user)
 REFERENCES persona (id_user)
 ON DELETE NO ACTION
 ON UPDATE NO ACTION;
+
+#Usuario admin
+INSERT INTO `usuario` (`id`, `usuario`, `contra_user`, `nombre`, `rolle`) VALUES ('1', 'admin', 'pbkdf2:sha256:260000$jeLkVaC5uNKKdYnS$02ee62ecde3dfa9ff90dd61dac0c4bb17a359cb46e4a3fd502744e0377b60402', 'Administrador', 'admin');

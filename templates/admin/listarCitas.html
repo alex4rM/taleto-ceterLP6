@@ -10,7 +10,7 @@
 <div class="btn-toolbar mb-2 mb-md-0">
   <div class="btn-group me-2">
     <button type="button" class="btn btn-sm btn-outline-secondary"><a href="{{ url_for('.reporte') }}" style="text-decoration:none;color: black;">Generar
-        PDF</a></button>
+        Reporte</a></button>
 
     <!-- <button type="button" class="btn btn-sm btn-outline-secondary">Export</button> -->
   </div>
@@ -50,22 +50,26 @@
           <!--UPDATE `reserva_cita` SET `estado_cita`='[value-4]' WHERE id_reserva=''-->
           {% if cita[8] == 1 %}
           <form action="/admin/estado-cita" method="post">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
             <input type="hidden" value="{{ cita[0] }}" name="id_cita" id="id_cita">
             <button type="submit" class="btn btn-success" disabled>Atendido</button>
           </form>
           {% else %}
           {% if cita[8] == 2 %}
           <form action="/admin/estado-cita" method="post">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
             <input type="hidden" value="{{ cita[0] }}" name="id_cita" id="id_cita">
             <button type="submit" class="btn btn-danger" disabled>Cancelado</button>
           </form>
           {% else %}
           <div class="btn-group" role="group" aria-label="Basic mixed styles example">
             <form action="/admin/estado-cita" method="post">
+              <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
               <input type="hidden" value="{{ cita[0] }}" name="id_cita" id="id_cita">
               <button type="submit" class="btn btn-outline-success">Asistencia</button>
             </form>
             <form action="/admin/cancelar-cita" method="post">
+              <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
               <input type="hidden" value="{{ cita[0] }}" name="id_cita" id="id_cita">
               <button type="submit" class="btn btn-outline-danger">Cancelar</button>
             </form>
